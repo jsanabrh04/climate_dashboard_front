@@ -21,7 +21,7 @@ export default function RegistrosPage() {
 
     const loadHistory = async () => {
       try {
-        const history = await fetchWeatherHistory(token, 100); 
+        const history = await fetchWeatherHistory(token, 24); 
         setData(history);
       } catch (error) {
         console.error('Error loading weather history:', error);
@@ -33,11 +33,13 @@ export default function RegistrosPage() {
     loadHistory();
   }, []);
 
-  const sortedData = [...data].sort((a, b) => {
+const sortedData = [...data]
+  .sort((a, b) => {
     const dateA = new Date(a.capturedAt).getTime();
     const dateB = new Date(b.capturedAt).getTime();
     return order === 'asc' ? dateA - dateB : dateB - dateA;
-  });
+  })
+  .slice(0, 24);
 
   return (
     <ProtectedRoute>
