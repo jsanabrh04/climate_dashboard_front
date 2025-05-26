@@ -1,14 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { redirect } from 'next/navigation';
-import { getToken } from '../../utils/auth';
-import WeatherCard from '../../components/Weathercard';
-import WeatherChart from '../../components/Weatherchart';
-import { fetchPreviewWeather, fetchWeatherHistory } from '../../api/weather';
-import ProtectedRoute from '../../components/Protectedroute';
-import { WeatherData } from '../../types/types';
-
+import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
+import { getToken } from "../../utils/auth";
+import WeatherCard from "../../components/Weathercard";
+import WeatherChart from "../../components/Weatherchart";
+import { fetchPreviewWeather, fetchWeatherHistory } from "../../api/weather";
+import ProtectedRoute from "../../components/Protectedroute";
+import { WeatherData } from "../../types/types";
 
 export default function WeatherPage() {
   const [current, setCurrent] = useState<WeatherData | null>(null);
@@ -18,7 +17,7 @@ export default function WeatherPage() {
   useEffect(() => {
     const token = getToken();
     if (!token) {
-      redirect('/');
+      redirect("/");
     }
 
     const loadWeather = async () => {
@@ -29,7 +28,7 @@ export default function WeatherPage() {
         setHistory(history);
       } catch (error) {
         console.error(error);
-        alert('Error fetching weather data');
+        alert("Error fetching weather data");
       } finally {
         setLoading(false);
       }
@@ -42,8 +41,7 @@ export default function WeatherPage() {
 
   return (
     <ProtectedRoute>
-      
-      <div className="max-w-4xl mx-auto p-4">
+      <div className="max-w-4xl mx-auto bg-gray-950 p-6 text-white">
         {current && <WeatherCard data={current} />}
         {history.length > 0 && <WeatherChart data={history} />}
       </div>

@@ -23,30 +23,40 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white p-6 rounded shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 border mb-4"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 border mb-4"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">
-          Sign In
-        </button>
-      </form>
-    </div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-950 text-white">
+  <form
+    onSubmit={handleLogin}
+    className="bg-gray-900 p-8 rounded-2xl shadow-lg w-full max-w-md border border-gray-800"
+  >
+    <h2 className="text-3xl font-semibold mb-6 text-center">Iniciar Sesion</h2>
+
+    {error && <p className="text-red-400 mb-4 text-sm">{error}</p>}
+
+    <input
+      type="email"
+      placeholder="Email"
+      className="w-full px-4 py-3 mb-4 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+    />
+
+    <input
+      type="password"
+      placeholder="Password"
+      className="w-full px-4 py-3 mb-6 bg-gray-800 text-white rounded-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+    />
+
+    <button
+      type="submit"
+      className="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white font-medium py-3 rounded-lg"
+    >
+      Conectar
+    </button>
+  </form>
+</div>
   );
 }

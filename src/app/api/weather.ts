@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_API_URL;
-console.log('API_URL in weather.ts:', API_URL);
 
 export const fetchPreviewWeather = async (token: string) => {
-  const res = await axios.get(`${API_URL}/weather/preview`, {
+  const res = await axios.get(`${API_URL}/weather/latest`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
