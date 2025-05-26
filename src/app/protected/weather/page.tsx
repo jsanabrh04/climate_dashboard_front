@@ -6,9 +6,9 @@ import { getToken } from '../../utils/auth';
 import WeatherCard from '../../components/Weathercard';
 import WeatherChart from '../../components/Weatherchart';
 import { fetchPreviewWeather, fetchWeatherHistory } from '../../api/weather';
-import { WeatherData } from '../../types/types';
 import ProtectedRoute from '../../components/Protectedroute';
-import { io } from 'socket.io-client';
+import { WeatherData } from '../../types/types';
+
 
 export default function WeatherPage() {
   const [current, setCurrent] = useState<WeatherData | null>(null);
@@ -36,23 +36,13 @@ export default function WeatherPage() {
     };
 
     loadWeather();
-
-    const socket = io('http://localhost:3001'); 
-
-    socket.on('new-weather', (data: WeatherData) => {
-      setCurrent(data);
-      setHistory(prev => [data, ...prev.slice(0, 23)]); 
-    });
-
-    return () => {
-      socket.disconnect();
-    };
   }, []);
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
 
   return (
     <ProtectedRoute>
+      
       <div className="max-w-4xl mx-auto p-4">
         {current && <WeatherCard data={current} />}
         {history.length > 0 && <WeatherChart data={history} />}

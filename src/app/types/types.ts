@@ -1,3 +1,5 @@
+// /types/index.ts
+
 export interface WeatherData {
   temperature: number;
   feelsLike: number;

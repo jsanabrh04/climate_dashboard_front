@@ -1,3 +1,4 @@
+// app/weather/WeatherCard.tsx
 import React from 'react';
 
 interface WeatherCardProps {
